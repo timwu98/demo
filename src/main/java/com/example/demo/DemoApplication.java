@@ -1,9 +1,9 @@
 package com.example.demo;
 
+import com.example.demo.model.Person;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @SpringBootApplication // @Configuration + @ComponentScan + @EnableAutoConfiguration
 public class DemoApplication {
@@ -16,7 +16,12 @@ public class DemoApplication {
     @RestController
     static class HelloController {
         @GetMapping("/hello")
-        public String hello() { return "Hello, Spring Boot! This is an awesome demo"; }
+        public String sayHello() { return "Hello, Spring Boot! This is an awesome demo"; }
+
+        @GetMapping("/echo")
+        public String echoGet(@RequestParam String name, @RequestParam String message) {
+            return "You sent: " + name + ", " + message;
+        }
     }
 }
 
