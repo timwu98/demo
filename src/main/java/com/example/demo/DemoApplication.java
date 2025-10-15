@@ -22,6 +22,16 @@ public class DemoApplication {
         public String echoGet(@RequestParam String name, @RequestParam String message) {
             return "You sent: " + name + ", " + message;
         }
+
+        @PostMapping("/echo")
+        public String echo(@RequestBody Person person) {
+//            String message = "Name: " + person.getLastName() + " " + person.getFirstName() +", age " + person.getAge();
+            return "Person Name: %s %s, age: %s".formatted(
+                    person.getLastName(),
+                    person.getFirstName(),
+                    person.getAge()
+            );
+        }
     }
 }
 
